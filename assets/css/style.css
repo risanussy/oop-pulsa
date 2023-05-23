@@ -1,0 +1,172 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: roboto;
+}
+
+.app {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 100vh;
+    background-color: #F2FBFF;
+}
+
+.sidebar {
+    padding: 25px;
+    width: 20%;
+    height: 100%;
+    background-color: #47B5FF;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    z-index: 0;
+}
+
+h1 {
+    color: white;
+}
+
+.root {
+    width: 80%;
+    height: 100%;
+    position: relative;
+}
+
+.nav {
+    background-color: #D9D9D9;
+    width: 100%;
+    height: 10vh;
+    padding: 20px 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+ul {
+    margin-top: 80px;
+    display: flex;
+    flex-direction: column;
+    height: 17%;
+    justify-content: space-between;
+    list-style: none;
+}
+
+ul li a {
+    text-decoration: none;
+    color: white;
+}
+
+.active::after {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 0;
+    transform: translateY(-35px);
+    z-index: -1;
+    width: 100%;
+    height: 50px;
+    background-color: #45adf3;
+}
+
+.main {
+    width: 100%;
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* content */
+.box {
+    padding: 25px 40px;
+    width: 70%;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0px 7px 32px rgba(0, 22, 35, 0.1)
+}
+
+input {
+    width: 100%;
+    margin: 5px 0;
+    border-radius: 6px;
+    padding: 15px;
+    border: 1px solid #D9D9D9;
+}
+
+button {
+    border: none;
+    width: 100%;
+    border-radius: 6px;
+    background-color: #47B5FF;
+    color: #fff;
+    padding: 15px;
+    margin-top: 10px;
+}
+
+button:hover {
+    cursor: pointer;
+    background-color: #45adf3;
+}
+
+::placeholder {
+    font-weight: 200;
+}
+
+#xl, #tri, #m3, #tel {
+    width: unset;
+    opacity: 0;
+    position: absolute;
+}
+
+label {
+    display: inline-block;
+    padding: 10px 30px;
+    margin: 7px 0;
+    margin-right: 5px;
+    color: #bbb;
+    border-radius: 6px;
+    background-color: #f3f3f3;
+    cursor: pointer;
+}
+
+.on {
+    background-color: #47B5FF;
+    color: white;
+}
+
+table {
+    width: 100%;
+    border: 2px solid #47B5FF;
+}
+
+td, th {
+    padding: 12px 20px;
+}
+
+thead {
+    background-color: #47B5FF;
+}
+
+th {
+    font-size: 14px;
+    text-align: left;
+    color: white;
+}
+
+.thead {
+    background-color: #47B5FF !important;
+}
+
+tr:nth-child(even){
+    background-color: #DCF4FF;
+}
+
+tr:nth-child(odd){
+    background-color: #F2FBFF;
+}
