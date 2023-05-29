@@ -1,3 +1,13 @@
+<?php 
+
+    require_once "access.php";
+
+    $users->read();
+
+    $data = $users->relasi();
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,10 +33,10 @@
             <div class="nav">
                 <h2>
                     <i class="fa-solid fa-wallet" style="color: #256d85;margin-right: 10px;"></i>
-                    Rp 8.000,00
+                    <?= $users->rupiah($users->saldo) ?>
                 </h2>
                 <h3>
-                    Risa Nussy
+                    <?= $users->nama ?>
                     <i class="fa-solid fa-user" style="color: #fff;margin-left: 10px;padding: 10px;background-color: #256d85;border-radius: 20px;"></i>
                 </h3>
             </div>
@@ -34,9 +44,9 @@
                 <div class="box">
                     <h2>Riwayat</h2>
                     <br>
-                    <table cellspacing="0">
+                    <table cellspacing="0" id="example">
                         <thead>
-                            <tr class="thead">
+                            <tr class="thead" style="background-color: #47B5FF !important;">
                                 <th>Tanggal</th>
                                 <th>No. Telpon</th>
                                 <th>Nominal</th>
@@ -44,18 +54,14 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>16/01/2023</td>
-                                <td>089509589977</td>
-                                <td>100.000</td>
-                                <td>XL</td>
-                            </tr>
-                            <tr>
-                                <td>16/01/2023</td>
-                                <td>089509589977</td>
-                                <td>100.000</td>
-                                <td>XL</td>
-                            </tr>
+                            <?php while ($row = mysqli_fetch_assoc($data)) { ?>
+                                <tr>
+                                    <td><?= $row['tanggal'] ?></td>
+                                    <td><?= $row['no_kartu'] ?></td>
+                                    <td><?= $users->rupiah($row['nominal']) ?></td>
+                                    <td><?= $row['provider'] ?></td>
+                                </tr>
+                            <?php } ?>
                         </tbody>
                     </table>
                 </div>

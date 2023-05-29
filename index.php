@@ -1,55 +1,15 @@
 <?php 
 
-    // MYSQL Connection
-    $host = 'localhost';
-    $user = 'root';
-    $password = '';
-    $database = 'pulsa';
+    require_once "access.php";
 
-    $koneksi = mysqli_connect($host, $user, $password, $database);
-
-    if(!$koneksi){
-        echo "Error connecting : " . mysqli_error($koneksi);
-    }
-
-    // Untuk Mengambil DB table Users (konter)
-    function get_db(){
-        global $koneksi, $nama, $saldo;
-        $query = "SELECT * FROM users";
-        $hasil = mysqli_query($koneksi, $query);
-    
-        if (mysqli_num_rows($hasil) > 0){
-            while ($row = mysqli_fetch_assoc($hasil)){
-                $nama = $row['nama'];
-                $saldo = $row['saldo'];
-            }
-        }    
-        
-    }
-
-    get_db();
+    $users->read();
 
     // cek gpost ada gak isinya
     if($_POST){
         // cek top up harus ada
         if($_POST['saldo'] > 0){
-            // update saldo
-            $saldo_post = $saldo + $_POST['saldo'];
-            $query = "UPDATE users SET saldo='$saldo_post' WHERE id=1";
-            $hasil = mysqli_query($koneksi, $query);
-            
-            if ($hasil){
-                get_db();
-            }else {
-                echo "gagal : " . mysqli_error($koneksi);
-            }
+            $users->update($_POST['saldo']);
         }
-    }
-
-    // Ini untuk konvert mata uang rupiah
-    function rupiah($angka)
-    {
-        return 'Rp. '.strrev(implode('.',str_split(strrev(strval($angka)),3)));
     }
 ?>
 
@@ -79,10 +39,10 @@
             <div class="nav">
                 <h2>
                     <i class="fa-solid fa-wallet" style="color: #256d85;margin-right: 10px;"></i>
-                    <?= rupiah($saldo) ?>
+                    <?= $users->rupiah($users->saldo); ?>
                 </h2>
                 <h3>
-                    <?= $nama ?>
+                    <?= $users->nama; ?>
                     <i class="fa-solid fa-user" style="color: #fff;margin-left: 10px;padding: 10px;background-color: #256d85;border-radius: 20px;"></i>
                 </h3>
             </div>
@@ -90,7 +50,7 @@
                 <div class="box">
                     <h2>Top Up</h2>
                     <br>
-                    <form method="POST">
+                    <form method="POST" action="index.php">
                         <input type="number" placeholder="Masukan Jumlah Uang" name="saldo">
                         <button>Kirim</button>
                     </form>

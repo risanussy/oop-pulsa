@@ -1,3 +1,19 @@
+<?php 
+
+    require_once "access.php";
+
+    $users->read();
+
+    // cek gpost ada gak isinya
+    if($_POST){
+        // cek top up harus ada
+        if($_POST['nominal'] > 0){
+            // update saldo
+            $users->transaksi($_POST['no_kartu'], $_POST['provider'], $_POST['nominal']);
+        }
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,10 +39,10 @@
             <div class="nav">
                 <h2>
                     <i class="fa-solid fa-wallet" style="color: #256d85;margin-right: 10px;"></i>
-                    Rp 8.000,00
+                    <?= $users->rupiah($users->saldo); ?>
                 </h2>
                 <h3>
-                    Risa Nussy
+                    <?= $users->nama; ?>
                     <i class="fa-solid fa-user" style="color: #fff;margin-left: 10px;padding: 10px;background-color: #256d85;border-radius: 20px;"></i>
                 </h3>
             </div>
@@ -34,18 +50,18 @@
                 <div class="box">
                     <h2>Pulsa</h2>
                     <br>
-                    <form action="">
-                        <input type="text" placeholder="Masukan Nomer HP">
-                        <input type="text" placeholder="Masukan Jumlah Pulsa">
+                    <form method="POST">
+                        <input type="text" placeholder="Masukan Nomer HP" name="no_kartu">
+                        <input type="number" placeholder="Masukan Jumlah Pulsa" name="nominal">
                         <br>
                         <label for="xl">XL</label>
-                        <input type="radio" id="xl">
+                        <input type="radio" id="xl" value="xl" name="provider">
                         <label for="tri">3</label>
-                        <input type="radio" id="tri">
+                        <input type="radio" id="tri" value="tri" name="provider">
                         <label for="m3">m3</label>
-                        <input type="radio" id="m3">
+                        <input type="radio" id="m3" value="m3" name="provider">
                         <label for="tel">Telkomsel</label>
-                        <input type="radio" id="tel">
+                        <input type="radio" id="tel" value="tel" name="provider">
                         <button>Kirim</button>
                     </form>
                 </div>

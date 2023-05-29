@@ -142,25 +142,26 @@ label {
 
 table {
     width: 100%;
-    border: 2px solid #47B5FF;
+    border: 2px solid #47B5FF !important;
 }
 
 td, th {
-    padding: 12px 20px;
+    padding: 12px 20px !important;
 }
 
 thead {
-    background-color: #47B5FF;
-}
-
-th {
-    font-size: 14px;
-    text-align: left;
-    color: white;
+    background-color: #47B5FF !important;
 }
 
 .thead {
     background-color: #47B5FF !important;
+}
+
+th {
+    background-color: #47B5FF !important;
+    font-size: 14px;
+    text-align: left;
+    color: white ;
 }
 
 tr:nth-child(even){
